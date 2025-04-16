@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2025/04/16 09:04:16.745,=C:\Users\steffz\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
+    <Transaction>2025/04/16 09:06:04.762,C:\Users\steffz\Desktop\OctalynTelegramVer\Unit3.dfm=C:\Users\steffz\Documents\Embarcadero\Studio\Projects\Unit3.dfm</Transaction>
+    <Transaction>2025/04/16 09:06:04.762,C:\Users\steffz\Desktop\OctalynTelegramVer\Unit3.pas=C:\Users\steffz\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
+    <Transaction>2025/04/16 09:16:32.615,C:\Users\steffz\Desktop\OctalynTelegramVer\Project2.dproj=C:\Users\steffz\Documents\Embarcadero\Studio\Projects\Project2.dproj</Transaction>
+    <Transaction>2025/04/16 09:26:50.818,C:\Users\steffz\Desktop\OctalynTelegramVer\OctalynTelegram.dproj=C:\Users\steffz\Desktop\OctalynTelegramVer\Project2.dproj</Transaction>
+    <Transaction>2025/04/16 09:27:00.002,C:\Users\steffz\Desktop\OctalynTelegramVer\OctaTeleg.pas=C:\Users\steffz\Desktop\OctalynTelegramVer\Unit3.pas</Transaction>
+    <Transaction>2025/04/16 09:27:00.002,C:\Users\steffz\Desktop\OctalynTelegramVer\OctaTeleg.dfm=C:\Users\steffz\Desktop\OctalynTelegramVer\Unit3.dfm</Transaction>
+    <Transaction>2025/04/16 09:30:57.245,=C:\Users\steffz\Desktop\OctalynTelegramVer\OctalynStub.exe</Transaction>
+  </Transactions>
+</BorlandProject>
